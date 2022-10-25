@@ -7,13 +7,13 @@ import LeftSideNav from '../Shared/LestSideNav/LeftSideNav';
 
 const Courses = ({course}) => {
     return (
-        <div className='bg-secondary'>
+        <div className='mt-4'>
             <Container>
-            <Row>
-                <Col className='d-none d-lg-block'>
+            <Row className='gap-4'>
+                <Col className='d-none d-lg-block border border-dark'>
                     <LeftSideNav></LeftSideNav>
                 </Col>
-                <Col>
+                <Col className='border border-dark'>
                     <Outlet></Outlet>
                 </Col>
             </Row>
