@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import LeftSideNav from '../LestSideNav/LeftSideNav';
 
 const Header = () => {
     return (
@@ -32,6 +33,9 @@ const Header = () => {
               Dank memes
             </Nav.Link>
           </Nav>
+          <div className='d-lg-none'>
+            <LeftSideNav></LeftSideNav>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
