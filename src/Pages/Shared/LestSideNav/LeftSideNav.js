@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Courses from '../../Courses/Courses';
+import Course from '../../Course/Course';
 
 const LeftSideNav = () => {
     const [courses, setCourses] = useState([]);
@@ -15,10 +15,10 @@ const LeftSideNav = () => {
         <div>
             <h2>This is left side</h2>
             {
-                courses.map(course => <Courses
+                courses.map(course => <Course
                     key = {course.id}
                     course = {course}
-                ></Courses>)
+                ></Course>)
             }
         </div>
     );
