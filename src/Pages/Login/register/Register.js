@@ -1,48 +1,42 @@
-import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
+import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
-import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
 
-    const navigate = useNavigate();
+    const {createUser} = useContext(AuthCoontext);
 
-
-    const googleProvider = new GoogleAuthProvider();
-
-    const {providerLogin} = useContext(AuthCoontext);
-
-    const handleGoogleSignIn = () => {
-        providerLogin(googleProvider)
-            .then(res => {
-                console.log(res.user);
-            })
-    }
-
-    const {signIn} = useContext(AuthCoontext);
-
-    const handleSubmit = (event) => {
+    const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        signIn(email, password)
+        createUser(email, password)
             .then(res => {
                 const user = res.user;
                 console.log(user);
                 form.reset();
-                navigate('/courses');
             })
     }
-
     return (
         <div>
-            <div>
             <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Your Name</Form.Label>
+                    <Form.Control name='name' type="name" placeholder="Enter Your Name" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Photo URL</Form.Label>
+                    <Form.Control name='photo' type="text" placeholder="Enter Photo URL" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name='email' type="email" placeholder="Enter email" required/>
                 </Form.Group>
@@ -51,14 +45,14 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name='password' type="password" placeholder="Password" required/>
                 </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-            </div>
-            <Button onClick={handleGoogleSignIn}>Google</Button>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+
+            </Form>
         </div>
     );
 };
 
-export default Login;
+export default Register;

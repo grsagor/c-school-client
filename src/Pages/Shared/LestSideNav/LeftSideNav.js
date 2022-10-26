@@ -10,7 +10,6 @@ const LeftSideNav = () => {
         .then( data => setCourses(data))
     }, [])
 
-    console.log(courses);
     return (
         <div>
             <h2>This is left side</h2>
