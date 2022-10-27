@@ -8,6 +8,8 @@ import Login from "../../Pages/Login/login/Login";
 import Register from "../../Pages/Login/register/Register";
 import Checkout from "../../Pages/checkout/Checkout"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
+import CourseHome from "../../Pages/CourseHome/CourseHome"
+
 
 export const routes = createBrowserRouter([
     {
@@ -22,6 +24,10 @@ export const routes = createBrowserRouter([
                 path: '/courses',
                 element: <Courses></Courses>,
                 children: [
+                    {
+                        path: '/courses',
+                        element: <CourseHome></CourseHome>
+                    },
                     {
                         path: '/courses/:name',
                         loader: ({params}) => {

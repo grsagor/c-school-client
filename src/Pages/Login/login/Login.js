@@ -1,9 +1,10 @@
-import { GoogleAuthProvider, GithubAuthProvider  } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FaGooglePlusG, FaGithubSquare } from 'react-icons/fa';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -14,7 +15,7 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    const {providerLogin} = useContext(AuthCoontext);
+    const { providerLogin } = useContext(AuthCoontext);
 
     let location = useLocation();
 
@@ -26,7 +27,7 @@ const Login = () => {
             .then(res => {
                 console.log(res.user);
                 setError('');
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch(error => setError(error.message))
     }
@@ -36,12 +37,12 @@ const Login = () => {
             .then(res => {
                 console.log(res.user);
                 setError('');
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch(error => setError(error.message))
     }
 
-    const {signIn} = useContext(AuthCoontext);
+    const { signIn } = useContext(AuthCoontext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -55,7 +56,7 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch(error => setError(error.message))
     }
@@ -63,26 +64,26 @@ const Login = () => {
     return (
         <div>
             <div>
-            <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control name='email' type="email" placeholder="Enter email" required/>
-                </Form.Group>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control name='email' type="email" placeholder="Enter email" required />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control name='password' type="password" placeholder="Password" required/>
-                </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-      <Form.Text className='text-danger'>
-            {error}
-      </Form.Text>
-    </Form>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control name='password' type="password" placeholder="Password" required />
+                    </Form.Group>
+                    <div className='text-center'>
+                            <div className=''><Button variant="dark" type="submit">Submit</Button></div>
+                            <div className=''><Form.Text className='text-danger'>{error}</Form.Text></div>
+                    </div>
+                </Form>
             </div>
-            <Button onClick={handleGoogleSignIn}>Google</Button>
-            <Button onClick={handleGitHubSignIn}>GitHub</Button>
+            <div className='text-center'>
+                    <div className='m-2'><Button variant='dark' onClick={handleGoogleSignIn}><FaGooglePlusG size={30}></FaGooglePlusG> Log In Google</Button></div>
+                    <div className='m-2'><Button variant='dark' onClick={handleGitHubSignIn}><FaGithubSquare size={30}></FaGithubSquare> Log In GitHub</Button></div>
+            </div>
         </div>
     );
 };

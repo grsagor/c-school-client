@@ -12,13 +12,15 @@ const LeftSideNav = () => {
 
     return (
         <div>
-            <h2>This is left side</h2>
-            {
+            <h2>Tutorial Lists</h2>
+           <ul>
+           {
                 courses.map(course => <Course
                     key = {course.id}
                     course = {course}
                 ></Course>)
             }
+           </ul>
         </div>
     );
 };

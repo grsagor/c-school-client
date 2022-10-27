@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">C School</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -75,14 +75,11 @@ const Header = () => {
                   <FaUser></FaUser>
               }
             </Nav.Link>
-            {/* <Nav.Link eventKey={2} href="/login">
-              Login
-            </Nav.Link> */}
             <>
               {
-                dark? <Nav.Link onClick={darkHandler}>Dark <FaToggleOff></FaToggleOff></Nav.Link> 
+                dark? <Nav.Link onClick={darkHandler}>Dark <FaToggleOff size={30}></FaToggleOff></Nav.Link> 
                 :
-                <Nav.Link onClick={darkHandler}>Light <FaToggleOn></FaToggleOn></Nav.Link>
+                <Nav.Link onClick={darkHandler}>Light <FaToggleOn size={30}></FaToggleOn></Nav.Link>
               }
             </>
           </Nav>
