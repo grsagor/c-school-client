@@ -15,9 +15,12 @@ const Header = () => {
 
   const { user, logOut } = useContext(AuthCoontext);
 
+  // const navigate = useNavigate();
+
   const handleLogOut = () => {
     logOut()
-      .then(() => { })
+      .then(() => {
+      })
   }
 
   return (
@@ -47,7 +50,7 @@ const Header = () => {
                 user?.uid ?
                   <>
                     {/* <span>{user?.displayName}</span> */}
-                    <Link onClick={handleLogOut} >Sign Out</Link>
+                    <Link to='/' onClick={handleLogOut} >Sign Out</Link>
                   </>
                   :
                   <>

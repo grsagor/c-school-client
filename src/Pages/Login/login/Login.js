@@ -1,11 +1,12 @@
 import { GoogleAuthProvider, GithubAuthProvider  } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -15,18 +16,29 @@ const Login = () => {
 
     const {providerLogin} = useContext(AuthCoontext);
 
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || '/';
+    console.log(from);
+
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then(res => {
                 console.log(res.user);
+                setError('');
+                navigate(from, {replace: true});
             })
+            .catch(error => setError(error.message))
     }
 
     const handleGitHubSignIn = () => {
         providerLogin(githubProvider)
             .then(res => {
                 console.log(res.user);
+                setError('');
+                navigate(from, {replace: true});
             })
+            .catch(error => setError(error.message))
     }
 
     const {signIn} = useContext(AuthCoontext);
@@ -42,8 +54,10 @@ const Login = () => {
                 const user = res.user;
                 console.log(user);
                 form.reset();
-                navigate('/courses');
+                setError('');
+                navigate(`${from}`, {replace: true});
             })
+            .catch(error => setError(error.message))
     }
 
     return (
@@ -62,6 +76,9 @@ const Login = () => {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+      <Form.Text className='text-danger'>
+            {error}
+      </Form.Text>
     </Form>
             </div>
             <Button onClick={handleGoogleSignIn}>Google</Button>
