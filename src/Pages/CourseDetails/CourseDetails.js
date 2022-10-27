@@ -15,8 +15,8 @@ const CourseDetails = () => {
       </Pdf>
         <div ref={ref}>
             <h2>Course Name: {name}</h2>
-            <Link to={`/courses/course/${id}`}><Button>Get Premium Access</Button></Link>
         </div>
+        <Link to={`/courses/course/${id}`}><Button>Get Premium Access</Button></Link>
         </div>
     );
 };

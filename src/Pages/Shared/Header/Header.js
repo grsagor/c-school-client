@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
 import LeftSideNav from '../LestSideNav/LeftSideNav';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 const Header = () => {
-
+  const [dark, setDark] = useState(true);
   const { user, logOut } = useContext(AuthCoontext);
 
   // const navigate = useNavigate();
@@ -22,6 +22,13 @@ const Header = () => {
       })
   }
 
+  const darkHandler = () => {
+    if(!dark){
+      setDark(true);
+    }
+    else setDark(false);
+  }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -29,8 +36,9 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="/courses">Courses</Nav.Link>
+            <Nav.Link href="/">FAQ</Nav.Link>
+            <Nav.Link href="/">Blog</Nav.Link>
           </Nav>
           <Nav>
 
@@ -70,6 +78,13 @@ const Header = () => {
             {/* <Nav.Link eventKey={2} href="/login">
               Login
             </Nav.Link> */}
+            <>
+              {
+                dark? <Nav.Link onClick={darkHandler}>Dark <FaToggleOff></FaToggleOff></Nav.Link> 
+                :
+                <Nav.Link onClick={darkHandler}>Light <FaToggleOn></FaToggleOn></Nav.Link>
+              }
+            </>
           </Nav>
           <div className='d-lg-none'>
             <LeftSideNav></LeftSideNav>
