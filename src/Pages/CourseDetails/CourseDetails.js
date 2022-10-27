@@ -1,12 +1,13 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Link, useLoaderData } from 'react-router-dom';
 import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 
 const CourseDetails = () => {
     const courseDetail = useLoaderData();
-    const {name} = courseDetail[0];
+    const {name, id} = courseDetail[0];
     return (
         <div>
         <Pdf targetRef={ref} filename="code-example.pdf">
@@ -14,6 +15,7 @@ const CourseDetails = () => {
       </Pdf>
         <div ref={ref}>
             <h2>Course Name: {name}</h2>
+            <Link to={`/courses/name/${id}`}><Button>Get Premium Access</Button></Link>
         </div>
         </div>
     );
