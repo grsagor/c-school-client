@@ -69,7 +69,7 @@ const Header = () => {
                       }
                     >
 
-                      <Button className='bg-transparent border border-0 rounded-circle'><Image style={{ height: '20px' }} src={user.photoURL}></Image></Button>
+                      <Button className='bg-transparent border border-0'><Image className='rounded-circle' style={{ height: '40px' }} src={user.photoURL}></Image></Button>
                     </OverlayTrigger>
                   </>
                   :

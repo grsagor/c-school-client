@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider  } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -11,11 +11,19 @@ const Login = () => {
 
 
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const {providerLogin} = useContext(AuthCoontext);
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
+            .then(res => {
+                console.log(res.user);
+            })
+    }
+
+    const handleGitHubSignIn = () => {
+        providerLogin(githubProvider)
             .then(res => {
                 console.log(res.user);
             })
@@ -57,6 +65,7 @@ const Login = () => {
     </Form>
             </div>
             <Button onClick={handleGoogleSignIn}>Google</Button>
+            <Button onClick={handleGitHubSignIn}>GitHub</Button>
         </div>
     );
 };
