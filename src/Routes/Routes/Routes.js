@@ -23,7 +23,7 @@ export const routes = createBrowserRouter([
                 children: [
                     {
                         path: '/courses/:name',
-                        loader: async ({params}) => {
+                        loader: ({params}) => {
                             return fetch(`http://localhost:5000/course/${params.name}`)
                         },
                         element: <PrivateRoute> <CourseDetails></CourseDetails> </PrivateRoute>
