@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 
 const auth = getAuth(app);
@@ -13,8 +13,14 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider);
     }
 
-    const createUser = (email, password) =>{
-        return createUserWithEmailAndPassword(auth, email, password);
+    const createUser = async (email, password, name, photo) =>{
+        await createUserWithEmailAndPassword(auth, email, password);
+        updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        })
+        .then(data => {
+            console.log(data);
+        }).catch(error=> console.log(error))
     }
 
     const signIn = (email, password) =>{

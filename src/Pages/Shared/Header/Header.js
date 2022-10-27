@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,18 +8,20 @@ import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
 import LeftSideNav from '../LestSideNav/LeftSideNav';
 import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Header = () => {
 
-  const {user, logOut} = useContext(AuthCoontext);
+  const { user, logOut } = useContext(AuthCoontext);
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOut()
-      .then( () => {})
+      .then(() => { })
   }
 
-    return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -42,22 +44,34 @@ const Header = () => {
           <Nav>
             <Nav.Link href="/login">
               {
-                user?.uid?
-                <>
-                  <span>{user?.displayName}</span>
-                  <Link onClick={handleLogOut} >Sign Out</Link>
-                </>
-                :
-                <>
-                  <Link to='/login'>Log In</Link>
-                <Link to='/register'>Register</Link>
-                </>
+                user?.uid ?
+                  <>
+                    {/* <span>{user?.displayName}</span> */}
+                    <Link onClick={handleLogOut} >Sign Out</Link>
+                  </>
+                  :
+                  <>
+                    <Link to='/login'>Log In</Link>
+                    <Link to='/register'>Register</Link>
+                  </>
               }
             </Nav.Link>
             <Nav.Link>
               {
-                user?.photoURL?
-                  <Image style={{height: 'width: 10px'}} src={user.photoURL}></Image>
+                user?.photoURL ?
+                  <>
+
+                    <OverlayTrigger
+                      key={'bottom'}
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id={`tooltip-${'bottom'}`}>{user.displayName}</Tooltip>
+                      }
+                    >
+
+                      <Button className='bg-transparent border border-0 rounded-circle'><Image style={{ height: '20px' }} src={user.photoURL}></Image></Button>
+                    </OverlayTrigger>
+                  </>
                   :
                   <FaUser></FaUser>
               }
@@ -72,7 +86,7 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    );
+  );
 };
 
 export default Header;
