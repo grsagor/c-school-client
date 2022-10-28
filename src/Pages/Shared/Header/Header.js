@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { AuthCoontext } from '../../../contexts/AuthProvider/AuthProvider';
-import LeftSideNav from '../LestSideNav/LeftSideNav';
 import { FaUser, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -37,7 +36,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/courses">Courses</Nav.Link>
+            <Nav.Link href="/courses">Tutorials</Nav.Link>
             <Nav.Link href="/">FAQ</Nav.Link>
             <Nav.Link href="/blog">Blog</Nav.Link>
           </Nav>
@@ -84,9 +83,9 @@ const Header = () => {
               }
             </>
           </Nav>
-          <div className='d-lg-none'>
+          {/* <div className='d-lg-none'>
             <LeftSideNav></LeftSideNav>
-          </div>
+          </div> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

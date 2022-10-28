@@ -10,6 +10,7 @@ import Checkout from "../../Pages/checkout/Checkout"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import CourseHome from "../../Pages/CourseHome/CourseHome"
 import Blog from "../../Pages/Blog/Blog";
+import Error from "../../Pages/Error/Error";
 
 
 export const routes = createBrowserRouter([
@@ -32,14 +33,14 @@ export const routes = createBrowserRouter([
                     {
                         path: '/courses/:name',
                         loader: ({params}) => {
-                            return fetch(`http://localhost:5000/course/${params.name}`)
+                            return fetch(`https://c-school.vercel.app/course/${params.name}`)
                         },
                         element: <CourseDetails></CourseDetails>
                     },
                     {
                         path: '/courses/course/:id',
                         loader: ({params}) => {
-                            return fetch(`http://localhost:5000/${params.id}`)
+                            return fetch(`https://c-school.vercel.app/${params.id}`)
                         },
                         element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
                     }
@@ -58,5 +59,9 @@ export const routes = createBrowserRouter([
                 element: <Blog></Blog>
             }
         ]
+    },
+    {
+        path: '/*',
+        element: <Error></Error>
     }
 ])

@@ -31,12 +31,12 @@ const CourseDetails = () => {
                 </div>
                 <div className='m-2 p-2'>
                     <h4>Here Is The Syntax In Picture:</h4>
-                    <img className='border border-dark' src={picture} alt="" />
+                    <img className='border border-dark img-fluid' src={picture} alt="" />
                 </div>
             </div>
             <div className='d-flex justify-content-center'>
                 <div className='mb-2 p-auto'><Link to={`/courses/course/${id}`}>
-                    <Button>Get Premium Access</Button></Link>
+                    <Button variant='dark'>Get Premium Access</Button></Link>
                 </div>
             </div>
 

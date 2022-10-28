@@ -10,10 +10,10 @@ const Courses = ({course}) => {
         <div className='m-4'>
             <Container>
             <Row className=''>
-                <Col className='d-none d-lg-block border border-dark col-4 text-white-50 bg-dark'>
+                <Col className='border border-dark col-12 col-lg-4 text-white-50 bg-dark'>
                     <LeftSideNav></LeftSideNav>
                 </Col>
-                <Col className='border border-dark col-8 d-flex justify-content-center flex-column align-items-center'>
+                <Col className='border border-dark col-12 col-lg-8 d-flex justify-content-center flex-column align-items-center'>
                     <Outlet></Outlet>
                 </Col>
             </Row>

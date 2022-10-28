@@ -6,7 +6,7 @@ const Checkout = () => {
     console.log(course);
     return (
         <div>
-            <h2>You were visiting <span className='text-danger'>{course.name}</span></h2>
+            <h2 className='text-dark fw-bold'>{course.name}</h2>
         </div>
     );
 };
