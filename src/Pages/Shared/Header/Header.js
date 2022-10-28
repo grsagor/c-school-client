@@ -51,7 +51,7 @@ const Header = () => {
                   :
                   <>
                     <Nav.Link href='/login'>Log In</Nav.Link>
-                    <Nav.Link href='/register'>Register</Nav.Link>
+                    {/* <Nav.Link href='/register'>Register</Nav.Link> */}
                   </>
               }
 

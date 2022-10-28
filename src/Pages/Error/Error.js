@@ -8,12 +8,9 @@ const Error = () => {
         <div className='error-css d-flex flex-column justify-content-center align-items-center'>
             <div className='text-danger fs-1'>Opps Sorry! This URL is not valid.</div>
             <div>
-                <Link to='/'><button className=''>
-                    <div className='d-flex align-items-center'>
-                        <div>Go to home page</div>
-                        <div className=''><FaRegArrowAltCircleRight></FaRegArrowAltCircleRight></div>
-                    </div>
-                </button></Link>
+                <Link to='/' className='text-dark'>
+                        <div>Go to home page <FaRegArrowAltCircleRight></FaRegArrowAltCircleRight></div>
+                </Link>
             </div>
         </div>
     );
