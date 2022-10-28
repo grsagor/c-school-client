@@ -13,8 +13,6 @@ const Header = () => {
   const [dark, setDark] = useState(true);
   const { user, logOut } = useContext(AuthCoontext);
 
-  // const navigate = useNavigate();
-
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -41,17 +39,24 @@ const Header = () => {
             <Nav.Link href="/blog">Blog</Nav.Link>
           </Nav>
           <Nav>
+          <>
+              {
+                dark? <Nav.Link onClick={darkHandler}>Dark <FaToggleOff size={30}></FaToggleOff></Nav.Link> 
+                :
+                <Nav.Link onClick={darkHandler}>Light <FaToggleOn size={30}></FaToggleOn></Nav.Link>
+              }
+            </>
 
               {
                 user?.uid ?
                   <>
-                    {/* <span>{user?.displayName}</span> */}
                     <Nav.Link href='/login' onClick={handleLogOut} >Sign Out</Nav.Link>
                   </>
                   :
                   <>
-                    <Nav.Link href='/login'>Log In</Nav.Link>
-                    {/* <Nav.Link href='/register'>Register</Nav.Link> */}
+                  {
+                      <Nav.Link href='/login'>Log In</Nav.Link>
+                  }
                   </>
               }
 
@@ -75,13 +80,7 @@ const Header = () => {
                   <FaUser></FaUser>
               }
             </Nav.Link>
-            <>
-              {
-                dark? <Nav.Link onClick={darkHandler}>Dark <FaToggleOff size={30}></FaToggleOff></Nav.Link> 
-                :
-                <Nav.Link onClick={darkHandler}>Light <FaToggleOn size={30}></FaToggleOn></Nav.Link>
-              }
-            </>
+
           </Nav>
           {/* <div className='d-lg-none'>
             <LeftSideNav></LeftSideNav>

@@ -20,7 +20,6 @@ const Login = () => {
     let location = useLocation();
 
     let from = location.state?.from?.pathname || '/';
-    console.log(from);
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
@@ -76,8 +75,8 @@ const Login = () => {
                     </Form.Group>
                     <div className='text-center'>
                             <div className=''><Button variant="dark" type="submit">Submit</Button></div>
-                            <div><Link to='/register' className='text-reset'>Please Register If You Don't Have An Account</Link></div>
                             <div className=''><Form.Text className='text-danger'>{error}</Form.Text></div>
+                            <div><Link to='/register' className='text-reset'>Please Register If You Don't Have An Account</Link></div>
                     </div>
                 </Form>
             </div>
